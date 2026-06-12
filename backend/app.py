@@ -5,6 +5,7 @@ import pandas as pd
 from fastapi.responses import FileResponse
 from schemas import StartInterviewRequest, SubmitAnswerRequest
 from gemini_service import generate_question, evaluate_answer
+from fastapi.responses import JSONResponse
 from database import SessionLocal
 import models
 import uuid
@@ -14,13 +15,18 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:5173",
-        "https://https://gen-ai-interview-assistant.vercel.app"
+        "https://gen-ai-interview-assistant-8tbzmmvb2.vercel.app"
     ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+
+@app.options("/{rest_of_path:path}")
+async def options_handler(rest_of_path: str):
+    return JSONResponse(content={})
 
 models.Base.metadata.create_all(bind=engine)
 
