@@ -31,7 +31,7 @@ function App() {
         try {
 
             const response = await axios.post(
-                "http://127.0.0.1:8000/start-interview",
+                "https://genai-interview-assistant.onrender.com/start-interview",
                 data
             );
 
@@ -60,7 +60,7 @@ function App() {
         try {
 
             const response = await axios.post(
-                "http://127.0.0.1:8000/submit-answer",
+                "https://genai-interview-assistant.onrender.com/submit-answer",
                 data
             );
 
@@ -91,7 +91,7 @@ function App() {
         try {
 
             const response = await axios.get(
-                `http://127.0.0.1:8000/report/${interviewId}`
+                `https://genai-interview-assistant.onrender.com/report/${interviewId}`
             );
 
             setReport(response.data);
@@ -118,7 +118,7 @@ function App() {
 
             window.open(
 
-                `http://127.0.0.1:8000/download-report/${interviewId}`,
+                `https://genai-interview-assistant.onrender.com/download-report/${interviewId}`,
 
                 "_blank"
 
