@@ -12,16 +12,15 @@ import uuid
 
 app = FastAPI()
 
+
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-         "https://gen-ai-interview-assistant.vercel.app"
-    ],
+    allow_origin_regex=r"https://gen-ai-interview-assistant.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 models.Base.metadata.create_all(bind=engine)
 
 
