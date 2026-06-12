@@ -34,6 +34,7 @@ def start_interview(request: StartInterviewRequest):
     db = SessionLocal()
 
     try:
+
         interview_id = str(uuid.uuid4())
 
         question = generate_question(
@@ -41,22 +42,48 @@ def start_interview(request: StartInterviewRequest):
             request.experience_level
         )
 
-        new_interview = models.Interview(
-            id=interview_id,
-            candidate_name=request.candidate_name,
-            job_role=request.job_role,
-            experience_level=request.experience_level
-        )
+        try:
 
-        db.add(new_interview)
-        db.commit()
+            new_interview = models.Interview(
+                id=interview_id,
+                candidate_name=request.candidate_name,
+                job_role=request.job_role,
+                experience_level=request.experience_level
+            )
+
+            db.add(new_interview)
+            db.commit()
+
+        except Exception as e:
+
+            print("DATABASE ERROR:")
+            print(str(e))
+
+            raise HTTPException(
+                status_code=500,
+                detail=str(e)
+            )
 
         return {
+
             "interview_id": interview_id,
+
             "question": question
+
         }
 
+    except Exception as e:
+
+        print("START INTERVIEW ERROR:")
+        print(str(e))
+
+        raise HTTPException(
+            status_code=500,
+            detail=str(e)
+        )
+
     finally:
+
         db.close()
 
 
