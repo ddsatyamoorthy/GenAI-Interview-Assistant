@@ -31,7 +31,7 @@ function App() {
         try {
 
             const response = await axios.post(
-                "https://genai-interview-assistant.onrender.com/start-interview",
+                "https://genai-interview-assistant-z319.onrender.com/start-interview",
                 data
             );
 
@@ -60,7 +60,7 @@ function App() {
         try {
 
             const response = await axios.post(
-                "https://genai-interview-assistant.onrender.com/submit-answer",
+                "https://genai-interview-assistant-z319.onrender.com/submit-answer",
                 data
             );
 
@@ -91,7 +91,7 @@ function App() {
         try {
 
             const response = await axios.get(
-                `https://genai-interview-assistant.onrender.com/report/${interviewId}`
+                `https://genai-interview-assistant-z319.onrender.com/report/${interviewId}`
             );
 
             setReport(response.data);
@@ -118,7 +118,7 @@ function App() {
 
             window.open(
 
-                `https://genai-interview-assistant.onrender.com/download-report/${interviewId}`,
+                `https://genai-interview-assistant-z319.onrender.com/download-report/${interviewId}`,
 
                 "_blank"
 
