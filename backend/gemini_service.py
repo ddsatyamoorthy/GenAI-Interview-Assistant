@@ -22,16 +22,25 @@ from prompts import QUESTION_PROMPT
 
 def generate_question(job_role, experience):
 
-    prompt = QUESTION_PROMPT.format(
-        job_role=job_role,
-        experience=experience
-    )
+    try:
 
-    response = model.generate_content(prompt)
+        prompt = QUESTION_PROMPT.format(
+            job_role=job_role,
+            experience=experience
+        )
 
-    return response.text
+        response = model.generate_content(prompt)
 
+        return response.text
 
+    except Exception as e:
+
+        print("ERROR IN GEMINI:")
+        print(str(e))
+
+        return f"""
+Tell me about your experience working as a {job_role}.
+"""
 
 
 def evaluate_answer(question, answer):
