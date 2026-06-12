@@ -14,7 +14,8 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "*"
+        "http://localhost:5173",
+        "https://https://gen-ai-interview-assistant.vercel.app"
     ],
     allow_credentials=True,
     allow_methods=["*"],
