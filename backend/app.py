@@ -15,18 +15,12 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://gen-ai-interview-assistant-8tbzmmvb2.vercel.app"
+         "https://gen-ai-interview-assistant.vercel.app"
     ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
-
-@app.options("/{rest_of_path:path}")
-async def options_handler(rest_of_path: str):
-    return JSONResponse(content={})
 
 models.Base.metadata.create_all(bind=engine)
 
